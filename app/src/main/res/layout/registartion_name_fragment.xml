@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/material_redA400"
+    android:layout_height="wrap_content">
+
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:text="Sign Up"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:textSize="32sp"
+        android:textColor="@color/material_grey50"
+        android:layout_height="wrap_content"
+        android:id="@+id/s_title" />
+
+
+    <!--FUll Name-->
+    <com.bookaholic.userApp.UI.OpenSansTextView
+
+        android:text="Full Name"
+        style="@style/singup_top"
+        android:id="@+id/s_name_text"
+        />
+    <com.bookaholic.userApp.UI.CTIP
+        style="@style/s_edit_box"
+        android:id="@+id/s_name_e"
+        android:hint="Enter Your Name"
+
+        android:inputType="textPersonName"
+        android:layout_below="@+id/s_name_text"
+/>
+
+    <!--Email-->
+    <com.bookaholic.userApp.UI.OpenSansTextView
+
+        android:text="E-mail Address"
+        android:id="@+id/s_e_text"
+        style="@style/singup_top"
+         />
+    <com.bookaholic.userApp.UI.CTIP
+
+        style="@style/s_edit_box"
+
+        android:inputType="textEmailAddress"
+        android:hint="Your email goes here"
+
+
+
+        android:id="@+id/s_email_e"
+        android:layout_below="@+id/s_name_text"
+       />
+
+    <!--Password-->
+    <com.bookaholic.userApp.UI.OpenSansTextView
+
+        android:text="Password"
+        android:id="@+id/s_pass_text"
+        style="@style/singup_top" />
+    <com.bookaholic.userApp.UI.CTIP
+        style="@style/s_edit_box"
+        android:id="@+id/s_pass_e"
+        android:inputType="textPassword"
+        android:hint="*********"
+
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        style="@style/login_button_white"
+        android:layout_marginTop="@dimen/s_b_mtop"
+        android:text="Login"
+        android:id="@+id/s_signup_button"
+        android:textAllCaps="false"
+        />
+
+</LinearLayout>
+</ScrollView>

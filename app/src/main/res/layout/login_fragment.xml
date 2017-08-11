@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:background="@color/colorPrimary"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
+        android:layout_width="match_parent"
+        android:text="Welcome Back!"
+        android:id="@+id/login_top_text"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        
+        android:textSize="22sp"
+        android:textColor="@color/material_white"
+        android:layout_height="wrap_content" />
+    <com.bookaholic.userApp.UI.OpenSansTextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textColor="@color/material_grey200"
+        android:layout_below="@+id/login_top_text"
+        android:text="We hope you have a booky Day"
+        android:layout_height="wrap_content" />
+
+
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="E-mail Address"
+        android:textStyle="bold"
+        android:id="@+id/login_email_text"
+        android:layout_below="@id/login_top_text"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="24dp"
+        android:textColor="@color/material_black"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_alignLeft="@id/login_email_text"
+        android:layout_marginRight="24dp"
+        android:id="@+id/login_email_editbox"
+        android:layout_marginTop="6dp"
+        android:layout_below="@+id/login_email_text"
+        android:layout_height="40dp" />
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="Password"
+        android:textStyle="bold"
+        android:id="@+id/login_pass_text"
+        android:layout_below="@id/login_email_editbox"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:textColor="@color/material_black"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_alignLeft="@id/login_email_text"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="6dp"
+        android:id="@+id/login_pass_editbox"
+        android:layout_below="@+id/login_pass_text"
+        android:layout_height="40dp" />
+
+
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/material_grey300"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:text="Forgot Password?"
+        android:id="@+id/login_forgot"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:textAllCaps="false"
+       android:id="@+id/login_button"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/login_forgot"
+        style="@style/login_button_white"
+      android:text="Login"
+    />
+
+</RelativeLayout>
