@@ -18,7 +18,7 @@ public class OpenSansBold extends android.support.v7.widget.AppCompatTextView {
         applyCustomFont(context);
     }
     private void applyCustomFont(Context context) {
-        Typeface customFont = FontCache.getTypeface("fonts/os_semi_bold.ttf", context);
+        Typeface customFont = FontCache.getTypeface("fonts/con.ttf", context);
         setTypeface(customFont);
     }
 

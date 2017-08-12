@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -176,8 +178,8 @@ public class ProductShowingActivity extends AppCompatActivity implements Respons
 
 
             // start Views
-                                                                                                                                                                                      WhitenyBooksFont pName = (WhitenyBooksFont) findViewById(R.id.vp_b_title);
-            WhitenyBooksFont mA = (WhitenyBooksFont) findViewById(R.id.vp_author_name);
+
+//            WhitenyBooksFont mA = (WhitenyBooksFont) findViewById(R.id.vp_author_name);
             WhitenyBooksFont oll  = (WhitenyBooksFont)findViewById(R.id.vp_b_one_liner);
             mLikeButton = (LikeButton) findViewById(R.id.vp_b_like_buton);
             mLikeButton.setOnLikeListener(this);
@@ -224,16 +226,21 @@ public class ProductShowingActivity extends AppCompatActivity implements Respons
 
 //
 
-            pName.setText(pname);
-            oll.setText(ol);
-            mA.setText(an);
             mToolbar = (Toolbar)findViewById(R.id.vp_toolbar);
             setSupportActionBar(mToolbar);
             if (getSupportActionBar() != null){
                 ActionBar ab = getSupportActionBar();
                 ab.setDisplayHomeAsUpEnabled(true);
                 ab.setDisplayShowHomeEnabled(true);
+                ab.setTitle(pname);
+
+                ab.setSubtitle(an);
             }
+
+            oll.setText(ol);
+
+            mPriceSwitch.setText((String.format("%s %s", getString(R.string.rs),price7)));
+
 
 
             //Setting Views
@@ -297,7 +304,23 @@ public class ProductShowingActivity extends AppCompatActivity implements Respons
         TextSwitcher mSwitcher;
     }
 
+
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.add_to_cart){
+            addProductToCart();
+        }
+        return true;
+    }
+
+    @Override
+
     protected void onPostResume() {
         super.onPostResume();
         Log.d(TAG, "onPostResume: ");
@@ -317,6 +340,16 @@ public class ProductShowingActivity extends AppCompatActivity implements Respons
         Log.d(TAG, "onSaveInstanceState: ");
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.product_menu,menu);
+        return true;
+
+
+
+
+    }
 
     @Override
     public void onErrorResponse(VolleyError error) {
@@ -404,14 +437,13 @@ public class ProductShowingActivity extends AppCompatActivity implements Respons
         if (group.getId() == R.id.price_radio_g){
             switch (checkedId){
                 case R.id.s_price:
-                    mPriceSwitch.setText(""+price7);
-
+                    mPriceSwitch.setText((String.format("%s %s", getString(R.string.rs),price7)));
                     break;
                 case R.id.f_price:
-                    mPriceSwitch.setText(""+price15);
+                    mPriceSwitch.setText((String.format("%s %s", getString(R.string.rs),price15)));
                     break;
                 case R.id.t_price:
-                    mPriceSwitch.setText(""+price30);
+                    mPriceSwitch.setText((String.format("%s %s", getString(R.string.rs),price30)));
                     break;
                 default:
                     break;

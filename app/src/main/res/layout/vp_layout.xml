@@ -5,45 +5,46 @@
     android:layout_marginBottom="70dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/my_black"
-    android:layout_height="match_parent">
 
-    <!--Product Name-->
-    <com.bookaholic.userApp.UI.WhitenyBooksFont
-        android:layout_width="match_parent"
-        android:maxLines="2"
-        android:gravity="left"
-        android:ellipsize="end"
-        android:text="Book Name"
-        android:textSize="@dimen/tsize_vp"
-        android:paddingRight="16dp"
-        android:id="@+id/vp_b_title"
-        android:textColor="@color/material_grey100"
-        android:paddingLeft="16dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/vp_atc"
-        android:layout_toStartOf="@+id/vp_atc" />
+    app:layout_goneMarginBottom="10dp"
+    android:layout_height="wrap_content">
+
+    <!--&lt;!&ndash;Product Name&ndash;&gt;-->
+    <!--<com.bookaholic.userApp.UI.WhitenyBooksFont-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:maxLines="2"-->
+        <!--android:gravity="left"-->
+        <!--android:ellipsize="end"-->
+        <!--android:text="Book Name"-->
+        <!--android:textSize="@dimen/tsize_vp"-->
+        <!--android:paddingRight="16dp"-->
+        <!--android:id="@+id/vp_b_title"-->
+        <!--android:textColor="@color/material_grey100"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_toLeftOf="@+id/vp_atc"-->
+        <!--android:layout_toStartOf="@+id/vp_atc" />-->
 
 
 
 
-    <com.bookaholic.userApp.UI.WhitenyBooksFont
-        android:layout_width="match_parent"
-        android:maxLines="2"
-        android:paddingLeft="16dp"
-        android:ellipsize="end"
-        android:text="Sidney Sheldon"
+    <!--<com.bookaholic.userApp.UI.WhitenyBooksFont-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:maxLines="2"-->
+        <!--android:paddingLeft="16dp"-->
+        <!--android:ellipsize="end"-->
+        <!--android:text="Sidney Sheldon"-->
 
-        android:textSize="18sp"
+        <!--android:textSize="18sp"-->
 
-        android:id="@+id/vp_author_name"
-        android:textColor="@color/material_grey200"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:layout_below="@+id/vp_b_title"
-        android:layout_alignRight="@+id/vp_b_title"
-        android:layout_alignEnd="@+id/vp_b_title" />
+        <!--android:id="@+id/vp_author_name"-->
+        <!--android:textColor="@color/my_black"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="left"-->
+        <!--android:layout_below="@+id/vp_b_title"-->
+        <!--android:layout_alignRight="@+id/vp_b_title"-->
+        <!--android:layout_alignEnd="@+id/vp_b_title" />-->
 
 
     <ImageView
@@ -161,7 +162,7 @@
         android:id="@+id/v_b_pc"
         android:textSize="16sp"
         android:textColor="@color/material_grey500"
-        android:text="499 pages,16 Hour"
+        android:text="5 Hour Read"
         android:layout_height="wrap_content" />
 
     <View
@@ -210,10 +211,13 @@
             android:clipChildren="true"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.bookaholic.userApp.UI.WhitenyBooksFont
                 android:layout_width="50dp"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/quantit"
+                android:gravity="center"
+                android:text="2"
+                android:textSize="20sp"
                 android:layout_height="50dp" />
             <com.bookaholic.userApp.UI.WhitenyBooksFont
                 android:id="@+id/gen_name"
@@ -268,7 +272,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/about_book_container"
-        android:background="#36353B"
         android:layout_below="@+id/linearLayout"
         android:layout_height="60dp">
         <com.bookaholic.userApp.UI.OpenSansBold
@@ -277,7 +280,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="4dp"
             android:textSize="12sp"
-            android:textColor="@color/material_grey400"
+            android:textColor="@color/my_black"
             android:id="@+id/about_book_text"
 
             android:layout_height="wrap_content" />
@@ -285,9 +288,10 @@
             android:layout_width="match_parent"
             android:text="This is the Section of The About Book Container , why dont we give a Guess about the Secon Opition of the book"
             android:layout_marginLeft="12dp"
+            android:ellipsize="end"
             android:layout_toLeftOf="@+id/about_arrow"
             android:layout_marginTop="4dp"
-            android:textColor="@color/material_grey500"
+            android:textColor="@color/material_grey900"
             android:layout_below="@+id/about_book_text"
             android:layout_height="wrap_content" />
 
@@ -304,25 +308,31 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/my_black"
+        android:layout_marginTop="16dp"
         android:layout_below="@+id/about_book_container"
-        android:layout_height="120dp">
+        android:layout_height="@dimen/vp_sim_height">
         <com.bookaholic.userApp.UI.WhitenyBooksFont
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:text="Similar Books"
+            android:layout_marginLeft="16dp"
+
             android:gravity="center"
-            android:textColor="@color/material_grey500"
+            android:textColor="@color/material_redA400"
             android:textSize="16sp"
             android:id="@+id/similar_book_text"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:layout_height="wrap_content" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_below="@+id/similar_book_text"
             android:scrollbars="none"
+
             android:clipChildren="true"
             android:layout_marginTop="4dp"
-            android:layout_height="80dp">
+            android:layout_height="match_parent"
+            android:id="@+id/horizontalScrollView">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -332,47 +342,60 @@
                     android:layout_width="75dp"
                     android:id="@+id/s_1"
                     android:padding="5dp"
-                    app:srcCompat="@drawable/ic_player"
+
                     android:layout_height="match_parent" />
                 <ImageView
                     android:layout_width="75dp"
                     android:id="@+id/s_2"
                     android:padding="5dp"
-                    app:srcCompat="@drawable/ic_player"
+
                     android:layout_height="match_parent" />
                 <ImageView
                     android:layout_width="75dp"
                     android:id="@+id/s_3"
                     android:padding="5dp"
-                    app:srcCompat="@drawable/ic_player"
+
                     android:layout_height="match_parent" />
                 <ImageView
                     android:layout_width="75dp"
                     android:id="@+id/s_4"
                     android:padding="5dp"
-                    app:srcCompat="@drawable/ic_player"
+
                     android:layout_height="match_parent" />
                 <ImageView
                     android:layout_width="75dp"
                     android:id="@+id/s_5"
                     android:padding="5dp"
-                    app:srcCompat="@drawable/ic_player"
+
                     android:layout_height="match_parent" />
                 <ImageView
                     android:layout_width="75dp"
                     android:id="@+id/s_6"
                     android:padding="5dp"
-                    app:srcCompat="@drawable/ic_player"
+
                     android:layout_height="match_parent" />
                 <ImageView
                     android:layout_width="75dp"
                     android:id="@+id/s_7"
                     android:padding="5dp"
-                    app:srcCompat="@drawable/ic_player"
+
                     android:layout_height="match_parent" />
             </LinearLayout>
 
         </HorizontalScrollView>
+
+        <com.bookaholic.userApp.UI.WhitenyBooksFont
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="More"
+            android:textColor="@color/material_white"
+            android:gravity="center"
+            android:layout_marginRight="12dp"
+            android:layout_alignTop="@+id/similar_book_text"
+            android:layout_above="@+id/horizontalScrollView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

@@ -29,7 +29,7 @@ public class WhitenyBooksFont extends android.support.v7.widget.AppCompatTextVie
         applyCustomFont(context);
     }
     private void applyCustomFont(Context context) {
-        Typeface customFont = FontCache.getTypeface("fonts/con.ttf", context);
+        Typeface customFont = FontCache.getTypeface("fonts/whiteny_book_reg.ttf", context);
         setTypeface(customFont);
     }
 }
