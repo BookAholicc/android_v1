@@ -7,8 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bookaholic.userApp.R;
+import com.bookaholic.userApp.utils.APIUtils;
+import com.bookaholic.userApp.utils.AppRequestQueue;
+
+import org.json.JSONObject;
 
 
 /**
@@ -20,9 +28,10 @@ import com.bookaholic.userApp.R;
  * It Prvovides All the Info about the Exam and its Feild
  */
 
-public class ExamInfoFragment extends Fragment{
+public class ExamInfoFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
 
     private Context mContext;
+    private int examId;
 
     @Override
     public void onDestroyView() {
@@ -63,6 +72,25 @@ public class ExamInfoFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+        if (getArguments() != null){
+            examId = getArguments().getInt(APIUtils.EXAM_CODE);
+            getExamDetailsFor(examId);
+
+        }
+    }
+
+    private void getExamDetailsFor(int examId) {
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(APIUtils.EXAM_CODE,examId);
+            JsonObjectRequest mRequest = new JsonObjectRequest(1,APIUtils.EXAM_DETAILS,jsonObject,this,this);
+            AppRequestQueue mAppRequestQueue  = AppRequestQueue.getInstance(mContext);
+            mAppRequestQueue.addToRequestQue(mRequest);
+        }
+        catch (Exception e){
+
+        }
     }
 
     @Override
@@ -84,5 +112,16 @@ public class ExamInfoFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(mContext,"Toast",Toast.LENGTH_LONG).show();
+
     }
 }

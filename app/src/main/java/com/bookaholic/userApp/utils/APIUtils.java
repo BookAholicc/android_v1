@@ -91,9 +91,12 @@ public class APIUtils {
     public static final String PRICE7 = "price7";
     public static final String PRICE15 = "price15";
     public static final String PRICE30 = "price30";
-    public static final String CID = "CID";
+    public static final String CID = "comboId";
     public static final String CATEGORY_API = ""; // // TODO: 8/8/17 Category Id
     public static final String FULL_NAME = "fullName";
+    public static final String EXAM_CODE = "examId";
+    public static final String EXAM_DETAILS = "";// // TODO: 13/8/17 Add
+    public static final String EXAM_BOOKS = "";// // TODO: 13/8/17 Addd
 
 
     public static String SAVE_TOKEN_API = "";

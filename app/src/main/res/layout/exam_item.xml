@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.drawee.view.SimpleDraweeView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/exam_image"
+    android:paddingLeft="1dp"
+    android:paddingRight="1dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    fresco:placeholderImage="@drawable/ic_shopping_cart"
+    fresco:failureImage="@drawable/ic_player"
+    android:layout_height="150dp">
+
+</com.facebook.drawee.view.SimpleDraweeView>

@@ -14,6 +14,7 @@ import com.bookaholic.userApp.Model.MiniProduct;
 import com.bookaholic.userApp.R;
 import com.bookaholic.userApp.UI.OpenSansTextView;
 import com.bookaholic.userApp.UI.WhitenyBooksFont;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -50,9 +51,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Cartholder> {
 
 
         // Cart Products
-        Picasso.with(mContext)
-                .load(mlist.get(position).getProductImage())
-                .into(holder.mCartImage);
+        holder.mCartImage.setImageURI(mlist.get(position).getProductImage());
         //
 
         holder.mName.setText(mlist.get(position).getProductName());
@@ -114,15 +113,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Cartholder> {
     public static class Cartholder extends RecyclerView.ViewHolder{
 
 
-        ImageView mCartImage;
+        SimpleDraweeView mCartImage;
         OpenSansTextView mName;
+//        8668108074
         WhitenyBooksFont mPrice;
         Spinner mDurationSpinner;
         OpenSansTextView mPageConunt;
         OpenSansTextView mReadingDuration;
         public Cartholder(View itemView) {
             super(itemView);
-            mCartImage = (ImageView) itemView.findViewById(R.id.cart_item_image);
+            mCartImage = (SimpleDraweeView) itemView.findViewById(R.id.cart_item_image);
             mName = (OpenSansTextView) itemView.findViewById(R.id.cart_item_pname);
             mPrice = (WhitenyBooksFont) itemView.findViewById(R.id.cart_item_price);
             mDurationSpinner = (Spinner) itemView.findViewById(R.id.cart_item_spinner);

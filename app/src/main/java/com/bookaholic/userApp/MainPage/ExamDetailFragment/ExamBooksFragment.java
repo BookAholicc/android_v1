@@ -7,8 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bookaholic.userApp.R;
+import com.bookaholic.userApp.utils.APIUtils;
+import com.bookaholic.userApp.utils.AppRequestQueue;
+
+import org.json.JSONObject;
 
 
 /**
@@ -17,7 +25,7 @@ import com.bookaholic.userApp.R;
  * Provided By Its Adapter
  */
 
-public class ExamBooksFragment extends Fragment{
+public class ExamBooksFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
 
 
     private Context mContext;
@@ -30,20 +38,16 @@ public class ExamBooksFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-     View mView  = LayoutInflater.from(mContext).inflate(R.layout.exam_books,container,false);
-
-
-
-
+        View mView = LayoutInflater.from(mContext).inflate(R.layout.exam_books, container, false);
 
 
         return mView;
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
     }
-
 
 
     @Override
@@ -63,6 +67,10 @@ public class ExamBooksFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+        if (getArguments() != null) {
+            int examCode = getArguments().getInt(APIUtils.EXAM_CODE);
+            getExamBooksFor(examCode);
+        }
     }
 
     @Override
@@ -76,6 +84,7 @@ public class ExamBooksFragment extends Fragment{
         super.onAttach(context);
         mContext = context;
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -95,4 +104,27 @@ public class ExamBooksFragment extends Fragment{
     public void onPause() {
         super.onPause();
     }
+
+    private void getExamBooksFor(int examCode) {
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(APIUtils.EXAM_CODE, examCode);
+            JsonObjectRequest mRequest = new JsonObjectRequest(1, APIUtils.EXAM_BOOKS, jsonObject, this, this);
+            AppRequestQueue mAppRequestQueue = AppRequestQueue.getInstance(mContext);
+            mAppRequestQueue.addToRequestQue(mRequest);
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(mContext,"Error ",Toast.LENGTH_LONG).show();
+    }
+
 }

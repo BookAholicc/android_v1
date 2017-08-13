@@ -1,60 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    app:cardUseCompatPadding="true"
-    app:cardCornerRadius="4dp"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    app:cardElevation="8dp"
-    app:cardBackgroundColor="@color/material_grey100"
-    android:layout_height="wrap_content">
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/my_black"
+    android:layout_marginTop="12dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-       <com.bookaholic.userApp.UI.WhitenyBooksFont
-           android:layout_width="wrap_content"
-           android:textSize="@dimen/card_title_ts"
-           android:layout_marginLeft="16dp"
-           android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-           android:gravity="center_vertical"
-           android:text="Heloo user "
-           android:layout_height="wrap_content"
-           android:layout_alignBottom="@+id/explore_button"
-           android:layout_toStartOf="@+id/explore_button"
-           android:layout_alignParentTop="true"
-           android:layout_alignParentStart="true"
-           android:id="@+id/explore_card_title"
-           android:layout_toLeftOf="@+id/explore_button"
-           android:layout_alignParentLeft="true" />
+    <com.bookaholic.userApp.UI.OpenSansTextView
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/card_title_ts"
 
-       <Button
-           android:id="@+id/explore_button"
-           style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentEnd="true"
-           android:layout_alignParentTop="true"
-           android:text="more"
-           android:layout_alignParentRight="true" />
+        android:layout_marginLeft="16dp"
 
+        android:gravity="center_vertical"
+        android:textColor="@color/material_white"
+        android:text="Hola Amigo"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/explore_button"
+        android:layout_toStartOf="@+id/explore_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/explore_card_title" />
 
-       <android.support.v7.widget.RecyclerView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:id="@+id/explore_list"
-           android:layout_alignParentEnd="true"
-           android:layout_below="@+id/explore_card_title"
-           android:layout_alignParentLeft="true"
-           android:layout_alignParentStart="true"
-           android:paddingLeft="2dp"
-           android:paddingRight="2dp"
-           android:layout_alignParentRight="true">
+    <Button
+        android:id="@+id/explore_button"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/material_redA400"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="more" />
 
-       </android.support.v7.widget.RecyclerView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/material_grey500"
+        android:layout_marginTop="4dp"
+        android:id="@+id/card_div"
+        android:layout_below="@id/explore_card_title"/>
 
-   </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_div"
+        android:id="@+id/explore_list"
+        android:layout_alignStart="@+id/explore_card_title"
+        android:layout_alignParentEnd="true">
 
-</android.support.v7.widget.CardView>
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

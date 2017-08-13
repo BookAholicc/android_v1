@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <com.bookaholicc.CustomUI.WhitenyBooksFont
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
         android:layout_width="wrap_content"
         android:text="Fully packaged Combos"
         android:layout_marginTop="12dp"
@@ -24,7 +24,7 @@
 
 
     </android.support.v4.view.ViewPager>
-    <com.bookaholicc.CustomUI.WhitenyBooksFont
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
         android:layout_width="wrap_content"
         android:text="Explore Top Publications"
         android:layout_marginTop="12dp"

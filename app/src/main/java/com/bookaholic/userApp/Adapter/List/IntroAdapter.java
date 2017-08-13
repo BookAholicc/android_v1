@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.bookaholic.userApp.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 
 /**
@@ -41,6 +42,8 @@ public class IntroAdapter extends PagerAdapter {
             case 0:
 
                 View itemView = mLayoutInflater.inflate(R.layout.intro_item_1, container, false);
+                SimpleDraweeView mImage = (SimpleDraweeView) itemView.findViewById(R.id.into_image);
+                mImage.setActualImageResource(R.mipmap.logo);
                 container.addView(itemView);
                 return itemView;
             case 1:

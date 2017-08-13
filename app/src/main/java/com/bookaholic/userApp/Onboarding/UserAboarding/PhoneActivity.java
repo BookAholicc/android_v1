@@ -70,6 +70,8 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
             Log.d(TAG, "onCreate: Got Intents");
 
 
+
+
         }
         else{
             throw new NullPointerException("Intent Null");
@@ -99,7 +101,7 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onStart() {
         super.onStart();
-        mPhoneNumber = (TextInputEditText)findViewById(R.id.number_text);
+        mPhoneNumber = (TextInputEditText)findViewById(R.id.phone_number_value);
         mNextButton = (Button)findViewById(R.id.continue_box);
         mNextButton.setOnClickListener(this);
     }

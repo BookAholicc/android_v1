@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:weightSum="1"
+    android:clipChildren="true"
     android:layout_height="match_parent">
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_weight="0.7"
+        android:layout_weight="0.8"
         android:id="@+id/ua_root"
         android:layout_height="0dp">
        <android.support.v4.view.ViewPager
@@ -26,22 +28,27 @@
     </FrameLayout>
     <Button
         android:layout_width="match_parent"
-        android:layout_weight="0.15"
+        android:layout_weight="0.1"
         android:text="Log In"
         android:textSize="22sp"
+        style="@style/login_button"
+        android:textColor="@color/my_black"
         android:id="@+id/ua_login_button"
-        android:background="@color/material_greenA200"
+        android:layout_marginTop="12dp"
         android:textAllCaps="false"
         android:layout_height="0dp">
     </Button>
     <Button
         android:layout_width="match_parent"
-        android:layout_weight="0.15"
+        android:layout_weight="0.1"
         android:text="Sign Up"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="12dp"
         android:id="@+id/ua_signup_button"
         android:textSize="22sp"
-        android:background="@drawable/signup_button_ripple"
-        android:textColor="@color/material_white"
+        style="@style/login_button"
+
+        android:textColor="@color/my_black"
         android:textAllCaps="false"
 
         android:layout_height="0dp">

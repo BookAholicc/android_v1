@@ -21,6 +21,7 @@ import com.bookaholic.userApp.Adapter.List.HorizontalAdapter;
 import com.bookaholic.userApp.Model.GenreModel;
 import com.bookaholic.userApp.Model.MiniProduct;
 import com.bookaholic.userApp.R;
+import com.bookaholic.userApp.UI.OpenSansTextView;
 import com.bookaholic.userApp.utils.APIUtils;
 import com.bookaholic.userApp.utils.AppRequestQueue;
 
@@ -82,7 +83,7 @@ public class ExploreFragment extends   android.support.v4.app.Fragment implement
         mAddingLayout = (LinearLayout) v.findViewById(R.id.explore_root);
 
 
-        makeExploreRequest();
+
 
 
 
@@ -112,10 +113,19 @@ public class ExploreFragment extends   android.support.v4.app.Fragment implement
         super.onStart();
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        makeExploreRequest();
+    }
+
     @Override
     public void onStop() {
         super.onStop();
     }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -149,7 +159,7 @@ public class ExploreFragment extends   android.support.v4.app.Fragment implement
                 HorizontalAdapter mAdapter = new HorizontalAdapter(mContext, modelist.get(i).getProductList(), this);
 
 
-                TextView mText = (TextView) mView.findViewById(R.id.explore_card_title);
+                OpenSansTextView mText = (OpenSansTextView) mView.findViewById(R.id.explore_card_title);
                 mText.setText(modelist.get(i).getGenreName());
                 RecyclerView mListView = (RecyclerView) mView.findViewById(R.id.explore_list);
                 mListView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, true));

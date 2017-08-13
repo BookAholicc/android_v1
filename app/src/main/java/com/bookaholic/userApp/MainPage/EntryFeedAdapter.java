@@ -2,6 +2,7 @@ package com.bookaholic.userApp.MainPage;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,8 @@ import com.bookaholic.userApp.UI.BadgedFourThreeImageView;
 import com.bookaholic.userApp.UI.OpenSansTextView;
 import com.bookaholic.userApp.UI.WhitenyBooksFont;
 import com.bookaholic.userApp.utils.ScreenUtil;
+import com.facebook.drawee.drawable.ProgressBarDrawable;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
@@ -33,7 +36,7 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
  *
  */
 
-class EntryFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class EntryFeedAdapter extends RecyclerView.Adapter<EntryFeedAdapter.Product1Vew> {
     private final LayoutInflater layoutInflater;
     private  List<EntryViewModel> l =new ArrayList<>();
     Activity m;
@@ -48,26 +51,25 @@ class EntryFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Product1Vew onCreateViewHolder(ViewGroup parent, int viewType) {
         return new Product1Vew(layoutInflater.inflate(R.layout.entry_item, parent, false));
 
     }
 
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final Product1Vew holder, int position) {
 
 
 
 
         if (holder instanceof Product1Vew) {
-            Picasso.with(m)
-                    .load(l.get(position).imageURL)
-                    .resize(600,800)
-                    .centerCrop()
-                    .placeholder(R.color.material_grey100)
-                    .transform(new RoundedCornersTransformation(5,2))
-                    .into(((Product1Vew) holder).image);
+            Uri uri = Uri.parse(l.get(position).imageURL);
+
+            holder.image.setImageURI(uri);
+
+
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 ((Product1Vew) holder).image.setTransitionName("" + position);
             }
@@ -161,16 +163,6 @@ class EntryFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //    }
 
 
-    @Override
-    public int getItemViewType(int position) {
-        if (l.get(position).isCombo){
-            return 2;
-        }
-        else{
-            return 1;
-        }
-
-    }
 
     public interface EntryItemCallbacks {
         void addToCart();
@@ -184,14 +176,14 @@ class EntryFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     // Package
     static class Product1Vew extends RecyclerView.ViewHolder {
 
-        ImageView image;
+        SimpleDraweeView image;
         WhitenyBooksFont mText;
         OpenSansTextView mprice7;
 
         Product1Vew(View itemView) {
             super(itemView);
             mText = (WhitenyBooksFont) itemView.findViewById(R.id.e_i_pname);
-            image = (ImageView) itemView.findViewById(R.id.e_i_image);
+            image = (SimpleDraweeView) itemView.findViewById(R.id.e_i_image);
             mprice7 = (OpenSansTextView) itemView.findViewById(R.id.e_i_price);
         }
     }

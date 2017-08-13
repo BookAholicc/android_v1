@@ -61,13 +61,13 @@
     <com.bookaholic.userApp.UI.WhitenyBooksFont
         android:layout_width="match_parent"
         android:maxLines="2"
-        android:layout_below="@+id/vp_author_name"
+
         android:ellipsize="end"
 
         android:id="@+id/vp_b_one_liner"
         android:text="This Has to be May Be Below 40 Words , bu tit has to be product liner"
         android:textSize="12sp"
-        android:textColor="@color/material_grey500"
+        android:textColor="@color/my_black"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
 
@@ -161,7 +161,8 @@
         android:layout_marginTop="8dp"
         android:id="@+id/v_b_pc"
         android:textSize="16sp"
-        android:textColor="@color/material_grey500"
+
+        android:textColor="@color/material_redA400"
         android:text="5 Hour Read"
         android:layout_height="wrap_content" />
 
@@ -310,6 +311,7 @@
         android:layout_width="match_parent"
         android:background="@color/my_black"
         android:layout_marginTop="16dp"
+        android:elevation="8dp"
         android:layout_below="@+id/about_book_container"
         android:layout_height="@dimen/vp_sim_height">
         <com.bookaholic.userApp.UI.WhitenyBooksFont

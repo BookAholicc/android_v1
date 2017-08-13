@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowBackground">@color/my_black</item>
+        <item name="android:colorBackground">@color/my_black</item>
 
     </style>
 

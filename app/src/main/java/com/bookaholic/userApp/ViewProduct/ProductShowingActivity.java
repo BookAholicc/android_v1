@@ -233,7 +233,6 @@ public class ProductShowingActivity extends AppCompatActivity implements Respons
                 ab.setDisplayHomeAsUpEnabled(true);
                 ab.setDisplayShowHomeEnabled(true);
                 ab.setTitle(pname);
-
                 ab.setSubtitle(an);
             }
 

@@ -101,6 +101,8 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
         mPas = (TextInputEditText) mView.findViewById(R.id.s_pass_e);
         mBut = (Button)mView.findViewById(R.id.s_signup_button);
 
+
+
     }
 
     @Override
@@ -114,6 +116,7 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
+        mBut.setOnClickListener(this);
     }
 
     @Override
@@ -135,6 +138,7 @@ public class SignUpNameFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.s_signup_button){
+            Log.d(TAG, "onClick: ShowPhone Number Page");
             //Button Clicked
             showEmailPassPage();
         }

@@ -45,11 +45,12 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
     OpenSansTextView mName;
 
-    WhitenyBooksFont mPhone;
+    OpenSansTextView mPhone;
     WhitenyBooksFont deliverText;
     OpenSansTextView mAddr1;
     OpenSansTextView mAddr2;
     WhitenyBooksFont shipText;
+    OpenSansTextView mAmount;
 
     LinearLayout coPayContainer;
 
@@ -78,12 +79,13 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         mpImage = (CircleImageView) findViewById(R.id.co_pro_image);
         mChangeNumber = (WhitenyBooksFont) findViewById(R.id.co_change_phone);
         mName = (OpenSansTextView) findViewById(R.id.co_user_name);
-        mPhone = (WhitenyBooksFont) findViewById(R.id.co_phone_number);
+        mPhone = (OpenSansTextView) findViewById(R.id.co_phone_number);
         mAddr1 = (OpenSansTextView) findViewById(R.id.street_address);
         mAddr2 = (OpenSansTextView) findViewById(R.id.region_addr);
         deliverText = (WhitenyBooksFont) findViewById(R.id.deliver_text);
         mChangeAddress =  (WhitenyBooksFont) findViewById(R.id.co_change_addr);
         mOrderButton = (Button) findViewById(R.id.place_order_button);
+        mAmount = (OpenSansTextView) findViewById(R.id.textView2);
         mOrderButton.setOnClickListener(this);
         mChangeNumber.setOnClickListener(this);
         mChangeAddress.setOnClickListener(this);
@@ -98,6 +100,8 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
             if (amount ==0){
                 throw new NullPointerException("Some Problem Please Contact Support");
             }
+
+
 
         }
 

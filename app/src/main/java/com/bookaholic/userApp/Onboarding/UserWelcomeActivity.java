@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.bookaholic.userApp.Onboarding.UserAboarding.LoginFragment;
 import com.bookaholic.userApp.Onboarding.UserAboarding.PhoneActivity;
@@ -112,10 +113,12 @@ public  class UserWelcomeActivity extends AppCompatActivity implements UARootFra
     @Override
     public void showEmailFragment(String fullName, String email, String pass) {
        Intent i = new Intent(this,PhoneActivity.class);
+        Log.d(TAG, "showEmailFragment: Starting Activity");
         i.putExtra(BundleKey.ARG_FULL_NAME,fullName);
         i.putExtra(BundleKey.ARG_EMAIL_ID,email);
         i.putExtra(BundleKey.ARG_PASSWORD,pass);
         startActivity(i);
+        finish();
 
     }
 

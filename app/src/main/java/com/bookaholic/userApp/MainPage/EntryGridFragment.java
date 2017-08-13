@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,16 +16,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bookaholic.userApp.Adapter.Viewpagers.ImageAdapter;
+import com.bookaholic.userApp.Adapter.Viewpagers.SwipeAdapterNewArrivals;
+import com.bookaholic.userApp.Model.Combo;
 import com.bookaholic.userApp.Model.EntryViewModel;
 import com.bookaholic.userApp.R;
+import com.bookaholic.userApp.UI.InkPageIndicator;
+import com.bookaholic.userApp.UI.ParallaxPagerTransformer;
 import com.bookaholic.userApp.ViewProduct.ProductShowingActivity;
 import com.bookaholic.userApp.utils.APIUtils;
 import com.bookaholic.userApp.utils.AppRequestQueue;
+import com.bookaholic.userApp.utils.RVdecorator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,11 +46,13 @@ import java.util.List;
  *
  */
 
-public class EntryGridFragment extends  BaseFragment implements Response.Listener<JSONObject>, Response.ErrorListener,EntryFeedAdapter.EntryItemCallbacks {
+public class EntryGridFragment extends  BaseFragment implements Response.Listener<JSONObject>, Response.ErrorListener
+        ,EntryFeedAdapter.EntryItemCallbacks,
+        SwipeAdapterNewArrivals.ComboInterface{
 
     private Context mContext;
     private String TAG = "SUBENTRY";
-    private RecyclerView mList;
+
     FrameLayout mRoot;
 
     @Override
@@ -126,13 +137,14 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
             JSONArray mComboArray  = response.getJSONArray("combos");
 
             List<EntryViewModel> mProductsList = null;
-            List<EntryViewModel> mCombosList = null;
+            List<Combo> mCombosList = null;
             try {
-
                 mProductsList = getProductListFromJson(mProductsArray);
-//                mCombosList = getComboListFromJson(mComboArray);
+                mCombosList = getComboListFromJson(mComboArray);
 
-                setAdapter(mProductsList);
+
+
+                setAdapter(mProductsList,mCombosList);
             }
             catch (Exception e){
                 Log.d(TAG, "onResponse: Exception in parsing new arrivals "+e.getLocalizedMessage());
@@ -150,7 +162,9 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
         }
     }
 
-    private void setAdapter(List<EntryViewModel> mProductsList) {
+    private void setAdapter(List<EntryViewModel> mProductsList, List<Combo> mCombosList) {
+
+        // setting List
         Log.d(TAG, "setAdapter:size  "+mProductsList.size());
         try {
             View list = null;
@@ -159,28 +173,72 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
                 list = View.inflate(mContext,R.layout.list,mRoot);
             }
 
-            mList = (RecyclerView) list.findViewById(R.id.list);
-            final EntryFeedAdapter  mAdapter = new EntryFeedAdapter(mProductsList,getActivity(),this);
 
-            GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),3);
-            mList.setLayoutManager(layoutManager);
-            mList.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
+            InkPageIndicator mIndicator = (InkPageIndicator) list.findViewById(R.id.indicator_top);
+
+            SwipeAdapterNewArrivals mAdapter1 = new SwipeAdapterNewArrivals(mCombosList,mContext,this);
+            ViewPager mTopPager = (ViewPager) list.findViewById(R.id.home_top_pager);
+            if (mTopPager != null) {
+
+                mTopPager.setAdapter(mAdapter1);
+            }
+            if (mIndicator != null && mTopPager != null && mTopPager.isShown()) {
+
+                mIndicator.setViewPager(mTopPager);
+            }
+
+
+            RecyclerView mListView = (RecyclerView) list.findViewById(R.id.list);
+            mListView.setLayoutManager(new GridLayoutManager(mContext,2));
+            if (mListView != null && mListView.isShown() && mProductsList != null){
+                EntryFeedAdapter  mAdapter = new EntryFeedAdapter(mProductsList,getActivity(),this);
+                GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
+                mListView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+                mListView.setAdapter(mAdapter);
+                RVdecorator dividerItemDecoration = new RVdecorator(ContextCompat.getDrawable(mContext,R.drawable.divider));
+                mListView.addItemDecoration(dividerItemDecoration);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
         catch (Exception e){
             Log.d(TAG, "setAdapter: Excetpion");
         }
+
+
+
 
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
         if (mRoot != null){
+            mRoot.removeAllViews();
             View mErrorLayout = View.inflate(mContext,R.layout.error,mRoot);
         }
     }
 
-    private List<EntryViewModel> getComboListFromJson(JSONArray mComboArray) {
+    private List<Combo> getComboListFromJson(JSONArray mComboArray) {
 
 
 
@@ -188,7 +246,7 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
         //Make Sure not more than 7
         int productCount = mComboArray.length();
 
-        List<EntryViewModel> mList = new ArrayList<>(productCount);
+        List<Combo> mList = new ArrayList<>(productCount);
         try {
             for (int i = 0; i < productCount; i++) {
 
@@ -204,7 +262,12 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
                     //Got the Object , get String Push it to List
                     try {
 
-//                        mList.add(new EntryViewModel(pObj.getString(APIUtils.C_IMAGE_URL), pObj.getInt(APIUtils.OUR_PRICE), pObj.getInt(APIUtils.CID),true));
+                        mList.add(new Combo(pObj.getInt(APIUtils.CID),
+                                pObj.getString(APIUtils.COMBO_NAME),
+                                pObj.getString(APIUtils.COMBO_DESC),
+                                pObj.getString(APIUtils.IMAGE_URL),
+                                pObj.getInt(APIUtils.OUR_PRICE),
+                                pObj.getString(APIUtils.DURATION)));
                     }
                     catch (Exception e){
                         Log.d(TAG, "Exception in getting JSON from Combo "+e.getLocalizedMessage());
@@ -313,6 +376,11 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
             getActivity().startActivity(i, options.toBundle());
         }
 
+
+    }
+
+    @Override
+    public void ComboproductClicked(Combo p) {
 
     }
 }

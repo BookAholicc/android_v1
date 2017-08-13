@@ -13,6 +13,7 @@ import com.bookaholic.userApp.Model.MiniProduct;
 import com.bookaholic.userApp.R;
 import com.bookaholic.userApp.UI.WhitenyBooksFont;
 import com.bookaholic.userApp.utils.ScreenUtil;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -52,12 +53,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
        final MiniProduct p =  mList.get(position);
 
 
-        Picasso.with(mContext)   //set Image
-                .load(p.getProductImage())
-                .resize(600,800)
-                .centerCrop()
-                .into(holder.mProductImage);
-
+        holder.mProductImage.setImageURI(p.getProductImage());
 
 
         holder.mProductName.setText(p.getProductName());
@@ -88,7 +84,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
      * The View Holder Class for this list
      */
     public static class HorizaontalItem extends RecyclerView.ViewHolder {
-        ImageView mProductImage;
+        SimpleDraweeView mProductImage;
         WhitenyBooksFont mProductName;
 
         TextView mPriceText;
@@ -97,7 +93,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.Ho
         public HorizaontalItem(View itemView) {
             super(itemView);
 
-            mProductImage = (ImageView) itemView.findViewById(R.id.h_p_item_image);
+            mProductImage = (SimpleDraweeView) itemView.findViewById(R.id.h_p_item_image);
             mProductName = (WhitenyBooksFont) itemView.findViewById(R.id.h_p_item_name);
 
             mPriceText = (TextView) itemView.findViewById(R.id.h_p_item_price_text);

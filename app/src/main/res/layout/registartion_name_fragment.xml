@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         style="@style/login_button_white"
         android:layout_marginTop="@dimen/s_b_mtop"
-        android:text="Login"
+        android:text="Next"
         android:id="@+id/s_signup_button"
         android:textAllCaps="false"
         />
