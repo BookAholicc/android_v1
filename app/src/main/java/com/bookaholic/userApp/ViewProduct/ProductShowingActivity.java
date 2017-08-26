@@ -1,5 +1,6 @@
 package com.bookaholic.userApp.ViewProduct;
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -30,6 +32,9 @@ import com.bookaholic.userApp.utils.APIUtils;
 import com.bookaholic.userApp.utils.AppRequestQueue;
 import com.bookaholic.userApp.utils.BundleKey;
 import com.bookaholic.userApp.utils.CartHandler;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.squareup.picasso.Callback;
@@ -39,6 +44,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,117 +149,183 @@ public class ProductShowingActivity extends AppCompatActivity implements Respons
 
 
 
+//    Started on HorzPager
+    List<MiniProduct> pList;
+    LinearLayout mLayout;
+
+
+    // Book Attributes inside Card
+    WhitenyBooksFont mName;
+    WhitenyBooksFont mAuthor;
+    WhitenyBooksFont mOneLiner;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_show_activity);
-        Log.d(TAG, "onCreate: ");
-        supportPostponeEnterTransition();
 
-        pid = getIntent().getIntExtra("pid",0);
-        String trans = getIntent().getStringExtra(BundleKey.TRANS_NAME);
-        final ImageView im = (ImageView) findViewById(R.id.backdrop);
-        im.getViewTreeObserver().addOnPreDrawListener(
-                new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public boolean onPreDraw() {
-                        im.getViewTreeObserver().removeOnPreDrawListener(this);
-                        supportStartPostponedEnterTransition();
-                        return true;
-                    }
-                }
-        );
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            im.setTransitionName(trans);
-            Log.d(TAG, "onCreate: Setted Up transition Name");
-        }
-        if (pid != 0){
-             pname = getIntent().getStringExtra(APIUtils.PRODUCT_NAME);
-             ol = getIntent().getStringExtra(APIUtils.ONE_LINER);
-             an= getIntent().getStringExtra(APIUtils.AUTHOR_NAME);
-            price7 = getIntent().getIntExtra(BundleKey.PR7,0);
-            imageURL = getIntent().getStringExtra(APIUtils.IMAGE_URL);
-            price15= getIntent().getIntExtra(APIUtils.PRICE15,0);
-            price30= getIntent().getIntExtra(APIUtils.PRICE30,0);
+        mLayout = (LinearLayout) findViewById(R.id.l_image);
 
-
-            // start Views
-
-//            WhitenyBooksFont mA = (WhitenyBooksFont) findViewById(R.id.vp_author_name);
-            WhitenyBooksFont oll  = (WhitenyBooksFont)findViewById(R.id.vp_b_one_liner);
-            mLikeButton = (LikeButton) findViewById(R.id.vp_b_like_buton);
-            mLikeButton.setOnLikeListener(this);
-            sDays = (RadioButton) findViewById(R.id.s_price);
-            fDays = (RadioButton) findViewById(R.id.f_price);
-            tDays = (RadioButton) findViewById(R.id.t_price);
-            RadioGroup mPrice = (RadioGroup) findViewById(R.id.price_radio_g);
-            mPrice.setOnCheckedChangeListener(this);
-
-            mPriceSwitch = (TextSwitcher) findViewById(R.id.tsLikesCounter);
-            mPriceSwitch.setText(""+price7);
-
-
-            ImageView addtocart = (ImageView) findViewById(R.id.vp_atc);
-            addtocart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addProductToCart();
-                }
-            });
-            supportPostponeEnterTransition();
-
-
-
-
-
-
-            Picasso.with(this)
-                    .load(imageURL)
-                    .fit()
-                    .noFade()
-                    .centerCrop()
-                    .into(im, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            supportStartPostponedEnterTransition();
-                        }
-
-                        @Override
-                        public void onError() {
-                            supportStartPostponedEnterTransition();
-                        }
-                    });
-
-//
-
-            mToolbar = (Toolbar)findViewById(R.id.vp_toolbar);
-            setSupportActionBar(mToolbar);
-            if (getSupportActionBar() != null){
-                ActionBar ab = getSupportActionBar();
-                ab.setDisplayHomeAsUpEnabled(true);
-                ab.setDisplayShowHomeEnabled(true);
-                ab.setTitle(pname);
-                ab.setSubtitle(an);
+        if (getIntent() != null) {
+            Type type = new TypeToken<List<MiniProduct>>() {
+            }.getType();
+            Gson gson = new Gson();
+            pList = gson.fromJson(getIntent().getStringExtra("plist"), type);
+            if (pList == null) {
+                throw new NullPointerException("Null String");
             }
-
-            oll.setText(ol);
-
-            mPriceSwitch.setText((String.format("%s %s", getString(R.string.rs),price7)));
-
-
-
-            //Setting Views
-
         }
-        else{
-            // Pid is Zero
-            throw new NullPointerException("Pid is Zero");
+
+
+        //Setting ImageViews
+        for(int i=0; i<pList.size(); i++){
+            SimpleDraweeView image=new SimpleDraweeView(this);
+            Uri uri = Uri.parse(pList.get(0).getProductImage());
+            // setting Image  using Fresco
+            image.setImageURI(uri);
+            image.getHierarchy().setPlaceholderImage(R.drawable.ic_shopping_cart);
+            image.getHierarchy().setFailureImage(R.drawable.ic_player);
+            mLayout.addView(image);
         }
 
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        Log.d(TAG, "onCreate: ");
+//        supportPostponeEnterTransition();
+//
+//        pid = getIntent().getIntExtra("pid",0);
+//        String trans = getIntent().getStringExtra(BundleKey.TRANS_NAME);
+//        final ImageView im = (ImageView) findViewById(R.id.backdrop);
+//        im.getViewTreeObserver().addOnPreDrawListener(
+//                new ViewTreeObserver.OnPreDrawListener() {
+//                    @Override
+//                    public boolean onPreDraw() {
+//                        im.getViewTreeObserver().removeOnPreDrawListener(this);
+//                        supportStartPostponedEnterTransition();
+//                        return true;
+//                    }
+//                }
+//        );
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            im.setTransitionName(trans);
+//            Log.d(TAG, "onCreate: Setted Up transition Name");
+//        }
+//        if (pid != 0){
+//             pname = getIntent().getStringExtra(APIUtils.PRODUCT_NAME);
+//             ol = getIntent().getStringExtra(APIUtils.ONE_LINER);
+//             an= getIntent().getStringExtra(APIUtils.AUTHOR_NAME);
+//            price7 = getIntent().getIntExtra(BundleKey.PR7,0);
+//            imageURL = getIntent().getStringExtra(APIUtils.IMAGE_URL);
+//            price15= getIntent().getIntExtra(APIUtils.PRICE15,0);
+//            price30= getIntent().getIntExtra(APIUtils.PRICE30,0);
+//
+//
+//            // start Views
+//
+////            WhitenyBooksFont mA = (WhitenyBooksFont) findViewById(R.id.vp_author_name);
+//            WhitenyBooksFont oll  = (WhitenyBooksFont)findViewById(R.id.vp_b_one_liner);
+//            mLikeButton = (LikeButton) findViewById(R.id.vp_b_like_buton);
+//            mLikeButton.setOnLikeListener(this);
+//            sDays = (RadioButton) findViewById(R.id.s_price);
+//            fDays = (RadioButton) findViewById(R.id.f_price);
+//            tDays = (RadioButton) findViewById(R.id.t_price);
+//            RadioGroup mPrice = (RadioGroup) findViewById(R.id.price_radio_g);
+//            mPrice.setOnCheckedChangeListener(this);
+//
+//            mPriceSwitch = (TextSwitcher) findViewById(R.id.tsLikesCounter);
+//            mPriceSwitch.setText(""+price7);
+//
+//
+//            ImageView addtocart = (ImageView) findViewById(R.id.vp_atc);
+//            addtocart.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    addProductToCart();
+//                }
+//            });
+//            supportPostponeEnterTransition();
+//
+//
+//
+//
+//
+//
+//            Picasso.with(this)
+//                    .load(imageURL)
+//                    .fit()
+//                    .noFade()
+//                    .centerCrop()
+//                    .into(im, new Callback() {
+//                        @Override
+//                        public void onSuccess() {
+//                            supportStartPostponedEnterTransition();
+//                        }
+//
+//                        @Override
+//                        public void onError() {
+//                            supportStartPostponedEnterTransition();
+//                        }
+//                    });
+//
+////
+//
+//            mToolbar = (Toolbar)findViewById(R.id.vp_toolbar);
+//            setSupportActionBar(mToolbar);
+//            if (getSupportActionBar() != null){
+//                ActionBar ab = getSupportActionBar();
+//                ab.setDisplayHomeAsUpEnabled(true);
+//                ab.setDisplayShowHomeEnabled(true);
+//                ab.setTitle(pname);
+//                ab.setSubtitle(an);
+//            }
+//
+//            oll.setText(ol);
+//
+//            mPriceSwitch.setText((String.format("%s %s", getString(R.string.rs),price7)));
+//
+//
+//
+//            //Setting Views
+//
+//        }
+//        else{
+//            // Pid is Zero
+//            throw new NullPointerException("Pid is Zero");
+//        }
+//
+
+
+//    }
 
     private void addProductToCart() {
         MiniProduct p = new MiniProduct(pname,imageURL,pid,price7);

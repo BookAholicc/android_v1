@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.bookaholic.userApp.UI.CircleImageView
+        android:layout_width="50dp"
+        android:layout_marginTop="6dp"
+        android:id="@+id/wt_prof_image"
+        android:layout_marginLeft="6dp"
+        app:srcCompat ="@mipmap/fifa"
+        android:layout_height="50dp" />
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/wt_prof_image"
+        android:textSize="18sp"
+        android:id="@+id/wt_name"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:textColor="@color/material_grey500"
+        android:layout_alignTop="@+id/wt_prof_image"
+        android:text="Nandha Kumar"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="50dp"
+        app:srcCompat="@drawable/heart_off"
+        android:layout_height="50dp"
+        android:padding="2dp"
+        android:id="@+id/wt_like"
+        android:layout_below="@+id/wall_text"
+        android:layout_alignRight="@+id/wall_text"
+        android:layout_alignEnd="@+id/wall_text"
+        android:layout_marginTop="7dp" />
+
+    <!--Like Count-->
+    <com.bookaholic.userApp.UI.WhitenyBooksFont
+        android:layout_width="wrap_content"
+        android:text="123"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="@color/material_white"
+        android:layout_below="@id/wt_like"
+        android:layout_alignLeft="@id/wt_like"
+        android:layout_alignRight="@id/wt_like"
+        android:layout_height="wrap_content" />
+
+    <!--Walltext-->
+
+    <com.bookaholic.userApp.UI.OpenSansTextView
+        android:layout_width="match_parent"
+        android:textSize="14sp"
+        android:padding="5dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:text="Lorem ipsum dolor , i dont know , what that fuck means but any way i have to enter some text beacuse i dont know thisshould not be more than 140 characters"
+        android:textColor="@color/material_white"
+        android:layout_below="@+id/wt_prof_image"
+        android:layout_height="wrap_content"
+        android:id="@+id/wall_text" />
+
+
+</RelativeLayout>

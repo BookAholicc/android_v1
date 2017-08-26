@@ -23,10 +23,12 @@ import com.bookaholic.userApp.Adapter.BrowseProductsAdapter;
 import com.bookaholic.userApp.Model.MiniProduct;
 import com.bookaholic.userApp.Model.Product;
 import com.bookaholic.userApp.R;
+import com.bookaholic.userApp.ViewProduct.ProductShowingActivity;
 import com.bookaholic.userApp.utils.APIUtils;
 import com.bookaholic.userApp.utils.AppRequestQueue;
 import com.bookaholic.userApp.utils.BundleKey;
 import com.bookaholic.userApp.utils.CartHandler;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -37,13 +39,14 @@ import java.util.List;
  * The Class Whihc is use to show Activity in a List Or Grid Type Fashion
  */
 
-class BrowseProductsActivity extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, BrowseProductsAdapter.EntryItemCallbacks {
+public class BrowseProductsActivity extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener, BrowseProductsAdapter.EntryItemCallbacks {
 
 
 
     RecyclerView mListView;
     int subCategoryId;
     private String TAG = "BP_ACTIVITY";
+    List<MiniProduct> mProductList;
 
     public BrowseProductsActivity() {
         super();
@@ -58,12 +61,18 @@ class BrowseProductsActivity extends AppCompatActivity implements Response.Liste
         if (getIntent() != null) {
             subCategoryId = getIntent().getIntExtra(APIUtils.SUB_CATEGORY,0);
             if (subCategoryId == 0){
-                throw new NullPointerException("No Category Id");
+//                throw new NullPointerException("No Category Id");
             }
 
             //
-            getBooksFor(subCategoryId);
+//            getBooksFor(subCategoryId);
         }
+
+        mProductList = CartHandler.getInstance(this).getMockProducts();
+        BrowseProductsAdapter mAdapter = new BrowseProductsAdapter(mProductList,this,this);
+        GridLayoutManager m = new GridLayoutManager(this,2);
+        mListView.setLayoutManager(m);
+        mListView.setAdapter(mAdapter);
     }
 
     private void getBooksFor(int subCategoryId) {
@@ -125,7 +134,7 @@ class BrowseProductsActivity extends AppCompatActivity implements Response.Liste
     public void onResponse(JSONObject response) {
         Log.d(TAG, "onResponse: "+response.toString());
 //        List<Product> mProductList = parseReponse(response); // TODO: 26/8/17 Parse Response here
-        List<MiniProduct> mProductList  = CartHandler.getInstance(this).getMockProducts();
+        mProductList = CartHandler.getInstance(this).getMockProducts();
         BrowseProductsAdapter mAdapter = new BrowseProductsAdapter(mProductList,this,this);
         GridLayoutManager m = new GridLayoutManager(this,2);
         mListView.setLayoutManager(m);
@@ -156,6 +165,13 @@ class BrowseProductsActivity extends AppCompatActivity implements Response.Liste
 
     @Override
     public void showProduct(MiniProduct id, RecyclerView.ViewHolder holder) {
-        Intent i  = new Intent(this,)
+        Intent i  = new Intent(this, ProductShowingActivity.class);
+        // Have a List of MiniProducts that needs to be passed to the Next Activity
+        Gson gs = new Gson();
+        String pstring = gs.toJson(mProductList);
+        i.putExtra("plist",pstring);
+        startActivity(i);
+
+
     }
 }

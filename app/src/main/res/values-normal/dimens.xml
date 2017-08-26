@@ -41,7 +41,7 @@
     <dimen name="text_size_option">9sp</dimen>
     <dimen name="s_b_mtop">60dp</dimen>
     <dimen name="s_t_mtop">18dp</dimen>
-    <dimen name="tsize_vp">22sp</dimen>
+    <dimen name="tsize_vp">20sp</dimen>
     <dimen name="image_height">135dp</dimen>
     <dimen name="image_width">95dp</dimen>
     <dimen name="h_i_im_h">120dp</dimen>

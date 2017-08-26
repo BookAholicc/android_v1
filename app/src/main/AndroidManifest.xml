@@ -28,6 +28,8 @@
         <activity android:name=".Activity.CheckOutActivity"
             />
 
+        <activity android:name=".MainPage.BrowseProductsActivity"/>
+
         <activity android:name=".Onboarding.UserAboarding.PhoneActivity"
             android:exported="true"/>
         <activity android:name=".Onboarding.UserWelcomeActivity"

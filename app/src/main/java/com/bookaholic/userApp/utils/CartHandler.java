@@ -6,6 +6,8 @@ import android.util.Log;
 import com.bookaholic.userApp.Model.Combo;
 import com.bookaholic.userApp.Model.MiniProduct;
 import com.bookaholic.userApp.Model.Product;
+import com.bookaholic.userApp.Model.WallItem;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,11 +155,28 @@ public class CartHandler  {
 
     public List<MiniProduct> getMockProducts() {
         List<MiniProduct> mList = new ArrayList<>();
-        mList.add(new MiniProduct("The Alchemist","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
-        mList.add(new MiniProduct("The Alchemist","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
-        mList.add(new MiniProduct("The Alchemist","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
-        mList.add(new MiniProduct("The Alchemist","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
+        mList.add(new MiniProduct("Losing My Viriginity","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
+        mList.add(new MiniProduct("Chicken Soup For teenage Souls","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2F900011.jpg?alt=media&token=a96b7363-5734-4526-91cb-26e4ec9fdfe2",4));
+        mList.add(new MiniProduct("Master of the Game","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2FIndia%E2%80%99s%20Struggle%20For%20Independence.jpg?alt=media&token=720cbf5e-dd14-4990-acae-95e27d9531d4",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+        mList.add(new MiniProduct("Thinking Fast & Slow","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Ffull%20life.jpg?alt=media&token=8b2142cc-8024-4b58-a43a-70b99d266263",4));
+
         return mList;
 
+    }
+
+    public List<WallItem> getMockWall() {
+        List<WallItem> mList  = new ArrayList<>();
+        mList.add()
     }
 }

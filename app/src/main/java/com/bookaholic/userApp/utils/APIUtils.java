@@ -97,6 +97,7 @@ public class APIUtils {
     public static final String EXAM_CODE = "examId";
     public static final String EXAM_DETAILS = "";// // TODO: 13/8/17 Add
     public static final String EXAM_BOOKS = "";// // TODO: 13/8/17 Addd
+    public static final String GET_WALL = "";// // TODO: 26/8/17  get Wall APU
 
 
     public static String SAVE_TOKEN_API = "";

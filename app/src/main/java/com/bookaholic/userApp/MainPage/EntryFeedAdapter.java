@@ -75,7 +75,7 @@ class EntryFeedAdapter extends RecyclerView.Adapter<EntryFeedAdapter.Product1Vew
             }
             ((Product1Vew) holder).mText.setText(l.get(position).productName);
 
-            ((Product1Vew) holder).mprice7.setText(String.format("%s %s", m.getString(R.string.rs), l.get(position).price7));
+//            ((Product1Vew) holder).mprice7.setText(String.format("%s %s", m.getString(R.string.rs), l.get(position).price7));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
