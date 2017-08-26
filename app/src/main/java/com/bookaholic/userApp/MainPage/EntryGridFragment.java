@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
@@ -130,8 +131,20 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
     }
 
     @Override
-    public void onResponse(JSONObject response) {
-        Log.d(TAG, "onResponse: "+response.toString());
+    public void onResponse(final JSONObject response) {
+
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                parseResponse(response);
+            }
+        });
+
+
+    }
+
+    private void parseResponse(JSONObject response) {
         try {
             JSONArray mProductsArray = response.getJSONArray("products");
             JSONArray mComboArray  = response.getJSONArray("combos");
@@ -192,12 +205,7 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
             mListView.setLayoutManager(new GridLayoutManager(mContext,2));
             if (mListView != null && mListView.isShown() && mProductsList != null){
                 EntryFeedAdapter  mAdapter = new EntryFeedAdapter(mProductsList,getActivity(),this);
-                GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
                 mListView.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
-                mListView.setAdapter(mAdapter);
-                RVdecorator dividerItemDecoration = new RVdecorator(ContextCompat.getDrawable(mContext,R.drawable.divider));
-                mListView.addItemDecoration(dividerItemDecoration);
             }
 
 
@@ -261,6 +269,7 @@ public class EntryGridFragment extends  BaseFragment implements Response.Listene
 
                     //Got the Object , get String Push it to List
                     try {
+
 
                         mList.add(new Combo(pObj.getInt(APIUtils.CID),
                                 pObj.getString(APIUtils.COMBO_NAME),

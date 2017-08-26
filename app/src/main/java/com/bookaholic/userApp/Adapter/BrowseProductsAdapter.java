@@ -1,87 +1,92 @@
-package com.bookaholic.userApp.MainPage;
+package com.bookaholic.userApp.Adapter;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bookaholic.userApp.Model.EntryViewModel;
-
+import com.bookaholic.userApp.Model.MiniProduct;
 import com.bookaholic.userApp.R;
-import com.bookaholic.userApp.UI.BadgedFourThreeImageView;
-import com.bookaholic.userApp.UI.OpenSansTextView;
 import com.bookaholic.userApp.UI.WhitenyBooksFont;
-import com.bookaholic.userApp.utils.ScreenUtil;
-import com.facebook.drawee.drawable.ProgressBarDrawable;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
-
 /**
- * Created by nandhu on 30/7/17..
- *
+ * Created by nandhu on 25/8/17.
  *
  */
 
-class EntryFeedAdapter extends RecyclerView.Adapter<EntryFeedAdapter.Product1Vew> {
+public class BrowseProductsAdapter extends RecyclerView.Adapter<BrowseProductsAdapter.BpPortrait> {
     private final LayoutInflater layoutInflater;
-    private  List<EntryViewModel> l =new ArrayList<>();
+    private  List<MiniProduct> l =new ArrayList<>();
     Activity m;
-    private  EntryItemCallbacks mCallback;
+    private BrowseProductsAdapter.EntryItemCallbacks mCallback;
 
 
-    public EntryFeedAdapter(List<EntryViewModel> mProductsList, Activity hostActivity, EntryGridFragment entryGridFragment) {
+    public BrowseProductsAdapter(List<MiniProduct> mProductsList, Activity hostActivity, EntryItemCallbacks mCallback) {
         this.l = mProductsList;
         layoutInflater = LayoutInflater.from(hostActivity);
         m = hostActivity;
-        this.mCallback = (EntryItemCallbacks) entryGridFragment;
+        this.mCallback = (BrowseProductsAdapter.EntryItemCallbacks) mCallback;
     }
 
     @Override
-    public Product1Vew onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new Product1Vew(layoutInflater.inflate(R.layout.entry_item, parent, false));
+    public BrowseProductsAdapter.BpPortrait onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new BrowseProductsAdapter.BpPortrait(layoutInflater.inflate(R.layout.grid_item, parent, false));
 
     }
 
 
     @Override
-    public void onBindViewHolder(final Product1Vew holder, int position) {
+    public void onBindViewHolder(final BpPortrait holder, int position) {
 
 
 
 
-        if (holder instanceof Product1Vew) {
-            Uri uri = Uri.parse(l.get(position).imageURL);
+        if (holder instanceof BrowseProductsAdapter.BpPortrait) {
+            Uri uri = Uri.parse(l.get(position).getProductImage());
 
-            holder.image.setImageURI(uri);
+            holder.mImage.setImageURI(uri);
 
 
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ((Product1Vew) holder).image.setTransitionName("" + position);
+                ((BrowseProductsAdapter.BpPortrait) holder).mImage.setTransitionName("" + position);
             }
-            ((Product1Vew) holder).mText.setText(l.get(position).productName);
+            ((BpPortrait) holder).mName.setText(l.get(position).getProductName());
 
-            ((Product1Vew) holder).mprice7.setText(String.format("%s %s", m.getString(R.string.rs), l.get(position).price7));
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EntryViewModel m  = getItem(holder.getAdapterPosition());
+                    MiniProduct m  = getItem(holder.getAdapterPosition());
                     if (m != null){
                         mCallback.showProduct(m,holder);
+                    }
+                }
+            });
+            holder.mList.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MiniProduct p  = getItem(holder.getAdapterPosition());
+                    if (p!= null){
+                        mCallback.addToWishlist(p);
+                    }
+                }
+            });
+
+            holder.mAddtoCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MiniProduct p = getItem(holder.getAdapterPosition());
+                    if (p != null){
+                        mCallback.addToCart(p);
                     }
                 }
             });
@@ -114,7 +119,7 @@ class EntryFeedAdapter extends RecyclerView.Adapter<EntryFeedAdapter.Product1Vew
     }
 
 
-    private EntryViewModel getItem(int position) {
+    private MiniProduct getItem(int position) {
         return l.get(position);
     }
 
@@ -145,9 +150,9 @@ class EntryFeedAdapter extends RecyclerView.Adapter<EntryFeedAdapter.Product1Vew
 //            } else {
 //                item.colspan = 1;
 //            }
-        }
+    }
 
-        // make sure that any expanded items are at the start of a row
+    // make sure that any expanded items are at the start of a row
 //        // so that we don't leave any gaps in the grid
 //        for (int expandedPos = 0; expandedPos < expandedPositions.size(); expandedPos++) {
 //            int pos = expandedPositions.get(expandedPos);
@@ -165,28 +170,32 @@ class EntryFeedAdapter extends RecyclerView.Adapter<EntryFeedAdapter.Product1Vew
 
 
     public interface EntryItemCallbacks {
-        void addToCart();
+        void addToCart(MiniProduct p);
 
-        void addToWishlist();
+        void addToWishlist(MiniProduct p);
 
-        void showProduct(EntryViewModel id, RecyclerView.ViewHolder holder);
+        void showProduct(MiniProduct id, RecyclerView.ViewHolder holder);
     }
 
 
     // Package
-    static class Product1Vew extends RecyclerView.ViewHolder {
+    static class BpPortrait extends RecyclerView.ViewHolder {
 
-        SimpleDraweeView image;
-        WhitenyBooksFont mText;
-        OpenSansTextView mprice7;
+        SimpleDraweeView mImage;
+        WhitenyBooksFont mName;
+        ImageView mList;
+        ImageView mAddtoCart;
 
-        Product1Vew(View itemView) {
+
+        BpPortrait(View itemView) {
             super(itemView);
-            mText = (WhitenyBooksFont) itemView.findViewById(R.id.e_i_pname);
-            image = (SimpleDraweeView) itemView.findViewById(R.id.e_i_image);
-
+            mImage = (SimpleDraweeView) itemView.findViewById(R.id.grid_image);
+            mName = (WhitenyBooksFont) itemView.findViewById(R.id.grid_name);
+            mList = (ImageView) itemView.findViewById(R.id.wish_item);
+            mAddtoCart = (ImageView) itemView.findViewById(R.id.cart_item);
         }
     }
 
 
 }
+

@@ -19,6 +19,11 @@
         <item name="android:layout_marginRight">32dp</item>
         <item name="android:background">@drawable/button_rounded</item>
     </style>
+    <style name="red_button">
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:background">@drawable/button_rounded_red</item>
+    </style>
 
     <style name="s_edit_box">
         <item name="android:layout_marginLeft">12dp</item>
@@ -48,4 +53,11 @@
     <style name="singup_top"></style>
 
     <style name="place_order_button"></style>
+
+    <style name="seeds_box">
+
+            <item name="colorControlNormal">@color/material_grey300</item>
+            <item name="colorControlActivated">@color/material_grey300</item>
+
+    </style>
 </resources>

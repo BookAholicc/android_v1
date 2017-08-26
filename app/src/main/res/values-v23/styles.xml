@@ -13,13 +13,16 @@
         <item name="android:windowSharedElementExitTransition">
             @transition/change_image_transform</item>
 
+        <item name="android:windowBackground">@color/my_black</item>
+        <item name="android:colorBackground">@color/my_black</item>
+
     </style>
     <style name="delivery_text">
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginTop">2dp</item>
     </style>
     <style name="custom_radio_button">
-        <item name="android:textColor">@color/material_redA400</item>
+        <item name="android:textColor">@color/material_white</item>
         <item name="android:button">@null</item>
         <item name="android:textSize">@dimen/text_size_option</item>
         <item name="android:background">@drawable/radio_button_selector</item>

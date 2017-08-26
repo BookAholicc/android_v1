@@ -12,6 +12,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+
 <include layout="@layout/new_arrivals_swiper"
     android:id="@+id/new_arrivals_top_container"/>
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"

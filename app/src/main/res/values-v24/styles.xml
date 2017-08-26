@@ -13,6 +13,9 @@
         <item name="android:windowSharedElementExitTransition">
             @transition/change_image_transform</item>
 
+        <item name="android:windowBackground">@color/my_black</item>
+        <item name="android:colorBackground">@color/my_black</item>
+
     </style>
     <style name="delivery_text">
         <item name="android:layout_marginLeft">16dp</item>

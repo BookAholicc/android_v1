@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
+        android:padding="10dp"
+        android:background="@mipmap/fifa"
         android:id="@+id/h_p_item_image"
         fresco:placeholderImage="@drawable/ic_shopping_cart"
         fresco:failureImage="@drawable/ic_player"

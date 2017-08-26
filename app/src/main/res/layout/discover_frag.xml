@@ -8,20 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.SearchView
+        <com.bookaholic.userApp.UI.WhitenyBooksFont
             android:layout_width="match_parent"
-            android:queryHint="Searc Authors, Books,Exam"
-            android:id="@+id/search_text_view"
-            android:layout_height="60dp">
+            android:textSize="20sp"
 
-        </android.support.v7.widget.SearchView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_below="@id/search_text_view"
             android:text="Explore From Categories"
             android:layout_marginTop="12dp"
             android:gravity="center"
+            android:textColor="@color/material_white"
             android:id="@+id/cateogires_explores_text"
             android:layout_height="wrap_content" />
 

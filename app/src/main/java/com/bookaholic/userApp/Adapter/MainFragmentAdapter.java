@@ -4,6 +4,10 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.bookaholic.userApp.MainPage.EntryGridFragment;
 import com.bookaholic.userApp.MainPage.ExamSection;
@@ -18,6 +22,7 @@ import com.bookaholic.userApp.MainPage.ExploreFragment;
  */
 public class MainFragmentAdapter extends FragmentStatePagerAdapter{
 
+    private static final String TAG = "MainAdapter";
     private Context mContext;
 
     public MainFragmentAdapter(FragmentManager fm) {
@@ -50,7 +55,14 @@ public class MainFragmentAdapter extends FragmentStatePagerAdapter{
         return 3;
     }
 
-  /*  @Override
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
+        Log.d(TAG, "destroyItem: ");
+        ((ViewPager) container).removeView((View) object);
+    }
+
+    /*  @Override
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0:

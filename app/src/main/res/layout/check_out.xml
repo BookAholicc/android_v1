@@ -11,13 +11,14 @@
         android:layout_width="75dp"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="20dp"
+        app:srcCompat="@mipmap/fifa"
         android:id="@+id/co_pro_image"
         android:layout_height="75dp" />
 
     <!--User Name-->
     <com.bookaholic.userApp.UI.OpenSansTextView
         android:layout_width="150dp"
-        android:textColor="@color/material_black"
+        android:textColor="@color/material_white"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/co_pro_image"
         android:text="Ravi Shankar"
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/co_pro_image"
         android:text="9688612122"
+        android:textColor="@color/material_grey200"
         android:maxLines="1"
         android:ellipsize="end"
         android:textSize="15sp"
@@ -48,17 +50,19 @@
     <com.bookaholic.userApp.UI.WhitenyBooksFont
         android:layout_width="wrap_content"
         android:text="Change?"
+        android:textColor="@color/material_grey500"
         android:id="@+id/co_change_phone"
         android:layout_height="wrap_content"
         android:layout_below="@+id/co_phone_number"
         android:layout_alignStart="@+id/co_phone_number"
         android:layout_alignLeft="@+id/co_phone_number" />
 
-    <com.bookaholic.userApp.UI.OpenSansTextView
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:textSize="22sp"
         android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/md_redA400"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -75,6 +79,7 @@
         android:id="@+id/textView3"
         android:layout_width="100dp"
         android:gravity="center"
+        android:textColor="@color/material_grey500"
         android:maxLines="1"
         android:layout_height="wrap_content"
         android:layout_below="@+id/co_phone_number"
@@ -97,7 +102,7 @@
         android:layout_marginTop="8dp"
         android:layout_below="@id/co_pro_image"
         android:background="@color/material_grey500"/>
-
+    <!--Delivery Text Title-->
     <com.bookaholic.userApp.UI.WhitenyBooksFont
         android:layout_width="wrap_content"
         android:text="Deliver At "
@@ -108,6 +113,22 @@
         android:layout_marginLeft="8dp"
         android:layout_below="@id/co_profile_div"
         android:layout_height="wrap_content" />
+
+    <!--Deilvery Address Value-->
+        <com.bookaholic.userApp.UI.OpenSansTextView
+            android:layout_width="match_parent"
+            android:layout_below="@+id/deliver_text"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginRight="12dp"
+            android:padding="2dp"
+            android:textColor="@color/material_grey200"
+            android:text="#42,Happy Home,2nd Main,3rd Cross,BTM Stage 2"
+            android:layout_toLeftOf="@+id/textView3"
+            android:layout_above="@+id/ship_text"
+            android:layout_alignLeft="@+id/deliver_text"
+            android:layout_alignStart="@+id/deliver_text" />
+
     <com.bookaholic.userApp.UI.OpenSansTextView
         android:layout_width="wrap_content"
         style="@style/delivery_text"
@@ -126,6 +147,7 @@
         android:layout_width="wrap_content"
         android:text="Change Address?"
         android:layout_marginRight="4dp"
+        android:textColor="@color/material_grey500"
         android:gravity="center"
         android:id="@+id/co_change_addr"
         android:layout_alignParentEnd="true"
@@ -180,15 +202,27 @@
 
     </RadioGroup>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/co_pay_container"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/material_grey300"
+        android:layout_height="wrap_content"
+        android:text="Add Seed"
+        style="@style/seeds_box"
+        android:layout_alignLeft="@+id/co_pro_image"
+        android:layout_alignStart="@+id/co_pro_image" />
+
     <!--Place Order-->
     <Button
         android:layout_width="match_parent"
-        android:layout_below="@+id/co_pay_container"
-        android:layout_marginTop="12dp"
+
         android:text="PLace Order"
+        android:layout_alignParentBottom="true"
         android:id="@+id/place_order_button"
         android:textColor="@color/material_white"
-        style="@style/place_order_button"
+        style="@style/red_button"
+        android:layout_marginBottom="40dp"
 
         android:layout_height="40dp" />
 </RelativeLayout>

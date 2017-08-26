@@ -121,6 +121,12 @@ public class ExploreFragment extends   android.support.v4.app.Fragment implement
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
     }
@@ -155,16 +161,19 @@ public class ExploreFragment extends   android.support.v4.app.Fragment implement
             try {
                 Log.d(TAG, "onResponse: Inside Adapter ");
 
-                View mView = LayoutInflater.from(mContext).inflate(R.layout.explore_card, mAddingLayout, false);
+                final View mView = LayoutInflater.from(mContext).inflate(R.layout.explore_card, mAddingLayout, false);
                 HorizontalAdapter mAdapter = new HorizontalAdapter(mContext, modelist.get(i).getProductList(), this);
-
-
                 OpenSansTextView mText = (OpenSansTextView) mView.findViewById(R.id.explore_card_title);
                 mText.setText(modelist.get(i).getGenreName());
                 RecyclerView mListView = (RecyclerView) mView.findViewById(R.id.explore_list);
-                mListView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, true));
+                mListView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
                 mListView.setAdapter(mAdapter);
-                mAddingLayout.addView(mView,i);
+                mAddingLayout.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAddingLayout.addView(mView);
+                    }
+                });
             }
             catch (Exception e){
                 Log.d(TAG, "onResponse: Exception in For Loop "+e.getLocalizedMessage());

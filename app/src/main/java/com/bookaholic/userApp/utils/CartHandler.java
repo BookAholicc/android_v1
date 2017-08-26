@@ -150,4 +150,14 @@ public class CartHandler  {
         mList.add(new Combo(4,"A Combo ","Some Description ","",300,"2 Weeks"));
         return mList;
     }
+
+    public List<MiniProduct> getMockProducts() {
+        List<MiniProduct> mList = new ArrayList<>();
+        mList.add(new MiniProduct("The Alchemist","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
+        mList.add(new MiniProduct("The Alchemist","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
+        mList.add(new MiniProduct("The Alchemist","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
+        mList.add(new MiniProduct("The Alchemist","https://firebasestorage.googleapis.com/v0/b/bookaholic-786.appspot.com/o/productImages%2Fbooks%2Fto-kill-a-mockingbird-50th-ed.jpg?alt=media&token=3e1093c5-ec20-43c5-b64e-2bbea0ef7c9b",4));
+        return mList;
+
+    }
 }
