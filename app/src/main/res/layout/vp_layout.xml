@@ -150,7 +150,7 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Public Wall!"
+                android:text="Wall"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:layout_below="@+id/wall_item"

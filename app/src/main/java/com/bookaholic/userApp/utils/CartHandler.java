@@ -6,7 +6,8 @@ import android.util.Log;
 import com.bookaholic.userApp.Model.Combo;
 import com.bookaholic.userApp.Model.MiniProduct;
 import com.bookaholic.userApp.Model.Product;
-import com.bookaholic.userApp.Model.WallItem;
+import com.bookaholic.userApp.Model.Wall;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,8 +176,9 @@ public class CartHandler  {
 
     }
 
-    public List<WallItem> getMockWall() {
-        List<WallItem> mList  = new ArrayList<>();
-        mList.add()
+    public List<Wall> getMockWall() {
+        List<Wall> mList  = new ArrayList<>();
+//        mList.add()
+        return mList;
     }
 }

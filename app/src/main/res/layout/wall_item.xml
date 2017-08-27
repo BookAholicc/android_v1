@@ -22,28 +22,8 @@
         android:layout_alignTop="@+id/wt_prof_image"
         android:text="Nandha Kumar"
         android:layout_height="wrap_content" />
-    <ImageView
-        android:layout_width="50dp"
-        app:srcCompat="@drawable/heart_off"
-        android:layout_height="50dp"
-        android:padding="2dp"
-        android:id="@+id/wt_like"
-        android:layout_below="@+id/wall_text"
-        android:layout_alignRight="@+id/wall_text"
-        android:layout_alignEnd="@+id/wall_text"
-        android:layout_marginTop="7dp" />
 
     <!--Like Count-->
-    <com.bookaholic.userApp.UI.WhitenyBooksFont
-        android:layout_width="wrap_content"
-        android:text="123"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:textColor="@color/material_white"
-        android:layout_below="@id/wt_like"
-        android:layout_alignLeft="@id/wt_like"
-        android:layout_alignRight="@id/wt_like"
-        android:layout_height="wrap_content" />
 
     <!--Walltext-->
 
@@ -58,6 +38,19 @@
         android:layout_below="@+id/wt_prof_image"
         android:layout_height="wrap_content"
         android:id="@+id/wall_text" />
+
+    <!--Wall Like Comment Container-->
+
+    <include layout="@layout/wall_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:id="@+id/bottom_container"
+        android:layout_below="@+id/wall_text"
+        />
 
 
 </RelativeLayout>

@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Created by nandhu on 26/8/17.
+ *
  */
 
 public class WallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -80,7 +81,12 @@ public class WallAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     public class WallImageItem extends RecyclerView.ViewHolder{
 
-        public WallItem(View itemView) {
+        public SimpleDraweeView muser;
+        public WhitenyBooksFont mWallText;
+        public  WhitenyBooksFont likeCont;
+        public  WhitenyBooksFont commentsCount;
+        public SimpleDraweeView mDraweeView;
+        public WallImageItem(View itemView) {
             super(itemView);
         }
     }

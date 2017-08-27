@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:weightSum="1"
+    android:layout_height="wrap_content">
+    <EditText
+        android:layout_width="match_parent"
+        android:hint="post Comment"
+
+        android:layout_height="50dp"
+        android:id="@+id/editText"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_toStartOf="@+id/imageView2" />
+    <com.like.LikeButton
+        android:layout_width="50dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="2dp"
+        android:id="@+id/wt_like_button"
+        app:icon_size="25dp"
+        android:layout_alignParentEnd="true"
+        android:foregroundGravity="center"
+        android:layout_height="50dp">
+    </com.like.LikeButton>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="123"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/material_grey500"
+        android:layout_below="@id/wt_like_button"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_alignRight="@+id/wt_like_button"
+        android:layout_alignEnd="@+id/wt_like_button"
+        android:layout_alignLeft="@+id/wt_like_button"
+        android:layout_alignStart="@+id/wt_like_button" />
+    <ImageView
+        android:layout_width="50dp"
+        android:padding="10dp"
+        app:srcCompat="@drawable/thumb_on"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/wt_like_button"
+        android:layout_toLeftOf="@+id/wt_like_button"
+        android:layout_toStartOf="@+id/wt_like_button"
+        android:id="@+id/imageView2" />
+
+
+</RelativeLayout>
